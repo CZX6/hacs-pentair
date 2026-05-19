@@ -95,9 +95,7 @@ class PentairFieldSwitch(PentairEntity, SwitchEntity):
         await self._write(self.entity_description.off_value)
 
     async def _write(self, value: str) -> None:
-        await self.coordinator.async_set_fields(
-            {self.entity_description.field: value}
-        )
+        await self.coordinator.async_set_fields({self.entity_description.field: value})
         # Optimistic state — refresh confirms.  Update_interval is 30s, so
         # explicitly requesting a refresh keeps the UI snappy.
         await self.coordinator.async_request_refresh()

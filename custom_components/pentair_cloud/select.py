@@ -8,8 +8,7 @@ button entities instead (see `button.py`).
 
 from __future__ import annotations
 
-from collections.abc import Callable
-from dataclasses import dataclass, field as dataclass_field
+from dataclasses import dataclass
 import logging
 from typing import Any
 
@@ -101,7 +100,9 @@ class PentairFieldSelect(PentairEntity, SelectEntity):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self._name_to_value = {v: k for k, v in self.entity_description.value_to_option.items()}
+        self._name_to_value = {
+            v: k for k, v in self.entity_description.value_to_option.items()
+        }
         self._attr_options = list(self.entity_description.value_to_option.values())
 
     @property

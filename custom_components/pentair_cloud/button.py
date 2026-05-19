@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import logging
-from typing import Any
 
 from homeassistant.components.button import ButtonEntity, ButtonEntityDescription
 from homeassistant.core import HomeAssistant
