@@ -19,6 +19,25 @@
 
 Home Assistant integration for Pentair Home devices.
 
+## 🌊 Supported devices
+
+The integration auto-discovers every device on your Pentair Home account and exposes the underlying telemetry as `sensor` / `binary_sensor` entities for diagnostics.  On top of that, the device types below get first-class **control** entities:
+
+### Color Sync (`deviceType: PLC1`, e.g. part **618031** — MicroBrite RGB pool lights)
+
+| Entity | Type | What it does | Backing field |
+|---|---|---|---|
+| Pool lights | `switch` | On / off | `d13` (0/1) |
+| Pool lights mode | `select` | One of 12 scenes: Red, White, Magenta, Green, Blue, SAm, Party, Romance, Caribbean, American, Sunset, Royal | `d1` (0..4, 7..13) |
+| Pool lights hold | `button` | Freezes the current animation on its present color | `d1` = 5 |
+| Pool lights recall | `button` | Resumes the last show that was running before Hold | `d1` = 6 |
+
+> The Color Sync controller is a cloud-only product (no LAN API).  Control happens via Pentair's REST endpoint, signed with the AWS Cognito tokens this integration already maintains.
+
+### IntelliFlo / IntelliCenter and other Pentair devices
+
+Read-only telemetry today — `switch` / `select` / `button` platforms are scoped to PLC1, but the platform files use device-type lookup tables so adding more device families is just a matter of describing the right fields.
+
 <!-- BEGIN AUTO-GENERATED INSTALLATION -->
 
 ## ⬇️ Installation
