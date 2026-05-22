@@ -38,6 +38,21 @@ The integration auto-discovers every device on your Pentair Home account and exp
 
 Read-only telemetry today — `switch` / `select` / `button` platforms are scoped to PLC1, but the platform files use device-type lookup tables so adding more device families is just a matter of describing the right fields.
 
+## 🍴 Fork notice — installing this build
+
+This repository is a fork of [natekspencer/hacs-pentair](https://github.com/natekspencer/hacs-pentair) that adds **Color Sync (PLC1) control entities** (the switch / select / button platforms above).  The change is open upstream as [PR #26](https://github.com/natekspencer/hacs-pentair/pull/26); pending merge, install this fork directly:
+
+1. In Home Assistant, open **HACS**
+2. Click the vertical ellipsis (⋮) → **Custom repositories**
+3. Enter `CZX6/hacs-pentair` in the _Repository_ field and select `Integration` in the _Type_ dropdown
+4. Click **ADD**
+5. Search for `Pentair Home` and **DOWNLOAD**
+6. Restart Home Assistant
+
+Already running upstream `natekspencer/hacs-pentair`?  Remove that integration first (Settings → Devices & services → Pentair Home → ⋮ → Delete) to avoid a duplicate domain registration, then install this fork via the steps above and re-add the integration.
+
+> **What's bundled beyond upstream:** the new Color Sync platforms, plus a proactive + reactive Cognito token-refresh layer in `coordinator.py` that fixes the `403 — The security token included in the request is expired` failure mode the upstream integration hits after ~1 hour of uptime.  See PR #26 for the full rationale.
+
 <!-- BEGIN AUTO-GENERATED INSTALLATION -->
 
 ## ⬇️ Installation
